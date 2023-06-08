@@ -45,19 +45,25 @@ public class ArticleController {
             PageRequest pageRequest = PageRequest.of(page - 1, PAGE_SIZE, sort);
             Page<Article> articlePage;
 
-            if (title.isEmpty()) {
-                if (period.isEmpty()) {
-                    articlePage = articleService.getAllEnabledArticles(pageRequest);
-                } else {
-                    articlePage = articleService.getArticlesByPeriod(period, pageRequest);
-                }
+            if(title.isEmpty()) {
+                articlePage = articleService.getAllEnabledArticles(pageRequest);
             } else {
-                if (period.isEmpty()) {
-                    articlePage = articleService.searchArticlesByTitle(title, pageRequest);
-                } else {
-                    articlePage = articleService.searchArticlesByTitleAndPeriod(title, period, pageRequest);
-                }
+                articlePage = articleService.searchArticlesByTitle(title, pageRequest);
             }
+
+            // if (title.isEmpty()) {
+            //     if (period.isEmpty()) {
+            //         articlePage = articleService.getAllEnabledArticles(pageRequest);
+            //     } else {
+            //         articlePage = articleService.getArticlesByPeriod(period, pageRequest);
+            //     }
+            // } else {
+            //     if (period.isEmpty()) {
+            //         articlePage = articleService.searchArticlesByTitle(title, pageRequest);
+            //     } else {
+            //         articlePage = articleService.searchArticlesByTitleAndPeriod(title, period, pageRequest);
+            //     }
+            // }
 
             List<Article> articleList = articlePage.getContent();
             int totalPages = articlePage.getTotalPages();

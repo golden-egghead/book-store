@@ -13,9 +13,9 @@ public interface ArticleService {
 
     Page<Article> searchArticlesByTitle(String title, Pageable pageable);
     
-    Page<Article> getArticlesByPeriod(String period, Pageable pageable);
+    // Page<Article> getArticlesByPeriod(String period, Pageable pageable);
 
-    Page<Article> searchArticlesByTitleAndPeriod(String title, String period, Pageable pageable);
+    // Page<Article> searchArticlesByTitleAndPeriod(String title, String period, Pageable pageable);
     
     Article savedArticle(Article article);
 }

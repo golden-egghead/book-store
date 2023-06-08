@@ -15,9 +15,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE a.enabled = true AND lower(a.title) LIKE lower(concat('%', ?1, '%'))")
     Page<Article> searchByTitle(String title, Pageable pageable);
 
-    Page<Article> findByPeriodsName(String period, Pageable pageable);
+    // Page<Article> findByPeriodsName(String period, Pageable pageable);
 
-    Page<Article> findByTitleAndPeriodsName(String title, String period, Pageable pageable);
+    // Page<Article> findByTitleAndPeriodsName(String title, String period, Pageable pageable);
 
     Article save(Article article);
 }

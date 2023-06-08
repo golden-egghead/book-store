@@ -29,15 +29,15 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.searchByTitle(title, pageable);
     }
 
-    @Override
-    public Page<Article> getArticlesByPeriod(String period, Pageable pageable) {
-        return articleRepository.findByPeriodsName(period, pageable);
-    }
+    // @Override
+    // public Page<Article> getArticlesByPeriod(String period, Pageable pageable) {
+    //     return articleRepository.findByPeriodsName(period, pageable);
+    // }
 
-    @Override
-    public Page<Article> searchArticlesByTitleAndPeriod(String title, String period, Pageable pageable) {
-        return articleRepository.findByTitleAndPeriodsName(title, period, pageable);
-    }
+    // @Override
+    // public Page<Article> searchArticlesByTitleAndPeriod(String title, String period, Pageable pageable) {
+    //     return articleRepository.findByTitleAndPeriodsName(title, period, pageable);
+    // }
 
     @Override
     public Article savedArticle(Article article) {

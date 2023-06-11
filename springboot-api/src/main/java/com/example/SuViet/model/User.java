@@ -1,4 +1,5 @@
 package com.example.SuViet.model;
+
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -42,7 +43,8 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
-    public User(int userID, String mail, String password, String achievement, int point, String fullname, Date createdDate, int reported, boolean enabled) {
+    public User(int userID, String mail, String password, String achievement, int point, String fullname,
+            Date createdDate, int reported, boolean enabled) {
         UserID = userID;
         this.mail = mail;
         this.password = password;

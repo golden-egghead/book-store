@@ -41,7 +41,9 @@ public class Article {
     @Column(nullable = false)
     private boolean enabled;
 
-    public Article(int articleID, String title, String context, String photo, Date createdDate, boolean status, int articleView, boolean enabled) {
+    public Article(int articleID, String title, String context, String photo, Date createdDate, boolean status,
+            int articleView, boolean enabled, Collection<Comment> comments, User user, Collection<Vote> votes,
+            Collection<Period> periods) {
         this.articleID = articleID;
         this.title = title;
         this.context = context;
@@ -50,6 +52,10 @@ public class Article {
         this.status = status;
         this.articleView = articleView;
         this.enabled = enabled;
+        this.comments = comments;
+        this.user = user;
+        this.votes = votes;
+        this.periods = periods;
     }
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
@@ -57,9 +63,9 @@ public class Article {
     @ToString.Exclude
     private Collection<Comment> comments;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UserID")
+    // @JoinColumn(name = "UserID")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private User user;
@@ -73,10 +79,7 @@ public class Article {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "tblPeriodArticle",
-                joinColumns = @JoinColumn(name = "ArticleID"),
-                inverseJoinColumns = @JoinColumn(name = "PeriodID")
-    )
+    @JoinTable(name = "tblPeriodArticle", joinColumns = @JoinColumn(name = "ArticleID"), inverseJoinColumns = @JoinColumn(name = "PeriodID"))
     private Collection<Period> periods;
 
 }

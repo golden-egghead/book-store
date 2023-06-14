@@ -1,5 +1,6 @@
 package com.example.SuViet.controller;
 
+import com.example.SuViet.dto.ArticleListDTO;
 import com.example.SuViet.model.Article;
 import com.example.SuViet.model.ResponseArticleObject;
 import com.example.SuViet.model.ResponseObject;
@@ -41,7 +42,7 @@ public class ArticleController {
             Sort.Direction direction = Sort.Direction.fromString(sortOrder);
             Sort sort = Sort.by(direction, sortBy);
             PageRequest pageRequest = PageRequest.of(page - 1, PAGE_SIZE, sort);
-            Page<Article> articlePage;
+            Page<ArticleListDTO> articlePage;
 
             if (title.isEmpty()) {
                 articlePage = articleService.getAllEnabledArticles(pageRequest);
@@ -49,29 +50,14 @@ public class ArticleController {
                 articlePage = articleService.searchArticlesByTitle(title, pageRequest);
             }
 
-            // if (title.isEmpty()) {
-            // if (period.isEmpty()) {
-            // articlePage = articleService.getAllEnabledArticles(pageRequest);
-            // } else {
-            // articlePage = articleService.getArticlesByPeriod(period, pageRequest);
-            // }
-            // } else {
-            // if (period.isEmpty()) {
-            // articlePage = articleService.searchArticlesByTitle(title, pageRequest);
-            // } else {
-            // articlePage = articleService.searchArticlesByTitleAndPeriod(title, period,
-            // pageRequest);
-            // }
-            // }
-
-            List<Article> articleList = articlePage.getContent();
+            List<ArticleListDTO> articleList = articlePage.getContent();
             int totalPages = articlePage.getTotalPages();
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseArticleObject("OK", "Querry Succesfully", articleList, page, PAGE_SIZE,
-                            articlePage.getTotalElements(), totalPages));
+                    new ResponseArticleObject("OK", "Querry Succesfully", page, PAGE_SIZE,
+                            articlePage.getTotalElements(), totalPages, articleList));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResponseArticleObject("ERROR", "An error occurred", null, 0, 0, 0, 0));
+                    new ResponseArticleObject("ERROR", "An error occurred", 0, 0, 0, 0, null));
         }
 
     }

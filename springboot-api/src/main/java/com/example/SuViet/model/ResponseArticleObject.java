@@ -2,24 +2,26 @@ package com.example.SuViet.model;
 
 import java.util.List;
 
+import com.example.SuViet.dto.ArticleListDTO;
+
 public class ResponseArticleObject {
     private String status;
     private String message;
-    private List<Article> articles;
     private int page;
     private int pageSize;
     private long totalArticles;
     private double totalPage;
+    private List<ArticleListDTO> articles;
 
-    public ResponseArticleObject(String status, String message, List<Article> articles, int page, int pageSize,
-            long totalArticles, double totalPage) {
+    public ResponseArticleObject(String status, String message, int page, int pageSize,
+            long totalArticles, double totalPage, List<ArticleListDTO> articles) {
         this.status = status;
         this.message = message;
-        this.articles = articles;
         this.page = page;
         this.pageSize = pageSize;
         this.totalArticles = totalArticles;
         this.totalPage = totalPage;
+        this.articles = articles;
     }
 
     public String getStatus() {
@@ -38,11 +40,11 @@ public class ResponseArticleObject {
         this.message = message;
     }
 
-    public List<Article> getArticles() {
+    public List<ArticleListDTO> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<Article> articles) {
+    public void setArticles(List<ArticleListDTO> articles) {
         this.articles = articles;
     }
 

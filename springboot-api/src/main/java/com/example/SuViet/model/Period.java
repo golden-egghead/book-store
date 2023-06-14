@@ -32,7 +32,17 @@ public class Period {
         this.image = image;
     }
 
-    @ManyToMany(mappedBy = "periods")
+    // @ManyToMany(mappedBy = "periods")
+    // @ToString.Exclude
+    // @EqualsAndHashCode.Exclude
+    // private Collection<Article> articles;
+
+    @ManyToMany
+    @JoinTable(
+        name = "tblPeriodArticle",
+        joinColumns = @JoinColumn(name = "PeriodID"),
+        inverseJoinColumns = @JoinColumn(name = "ArticleID")
+    )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Collection<Article> articles;

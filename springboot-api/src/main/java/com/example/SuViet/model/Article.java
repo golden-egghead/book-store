@@ -63,9 +63,9 @@ public class Article {
     @ToString.Exclude
     private Collection<Comment> comments;
 
-    // @JsonIgnore
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "UserID")
+    @JoinColumn(name = "UserID")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private User user;
@@ -75,11 +75,20 @@ public class Article {
     @EqualsAndHashCode.Exclude
     private Collection<Vote> votes;
 
-    @JsonIgnore
+    // @JsonIgnore
+    // @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @ToString.Exclude
+    // @EqualsAndHashCode.Exclude
+    // @JoinTable(name = "tblPeriodArticle", joinColumns = @JoinColumn(name = "ArticleID"), inverseJoinColumns = @JoinColumn(name = "PeriodID"))
+    // private Collection<Period> periods;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "tblPeriodArticle", joinColumns = @JoinColumn(name = "ArticleID"), inverseJoinColumns = @JoinColumn(name = "PeriodID"))
+    @JoinTable(
+        name = "tblPeriodArticle",
+        joinColumns = @JoinColumn(name = "ArticleID"),
+        inverseJoinColumns = @JoinColumn(name = "PeriodID")
+    )
     private Collection<Period> periods;
 
 }

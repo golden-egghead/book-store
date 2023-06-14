@@ -4,7 +4,6 @@ import com.example.SuViet.model.Article;
 import com.example.SuViet.model.ResponseArticleObject;
 import com.example.SuViet.model.ResponseObject;
 import com.example.SuViet.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,6 @@ public class ArticleController {
     private final ArticleService articleService;
     private static final int PAGE_SIZE = 6;
 
-    @Autowired
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
